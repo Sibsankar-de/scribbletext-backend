@@ -1,4 +1,4 @@
-# Messaging Website Backend
+# ScribbleText Backend
 
 
 ## Introduction
