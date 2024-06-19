@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon -r dotenv/config --experimental-json-modules src/index.js",
-    "build": "npm install",
-     "postinstall": "mkdir -p public/temp"
+    "build": "npm install && mkdir -p public/temp",
+    "postinstall": "mkdir -p public/temp"
   },
   "keywords": [
     "messaging",
