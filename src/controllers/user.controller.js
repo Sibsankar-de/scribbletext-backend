@@ -308,13 +308,7 @@ const getContactList = asyncHandler(async (req, res) => {
                     }
                 },
                 createdAt: 1,
-                lastMessage: {
-                    $cond: {
-                        if: { $gt: ["$content.text", ""] },
-                        then: "$content.text",
-                        else: "$content.file.original_filename"
-                    }
-                },
+                lastMessage: "$$ROOT",
                 isNotDelivered: {
                     $cond: {
                         if: {
@@ -332,6 +326,14 @@ const getContactList = asyncHandler(async (req, res) => {
                         else: 0
                     }
                 }
+            }
+        },
+        {
+            $match: {
+                $and: [
+                    { "lastMessage.deletedFromSender": false },
+                    { "lastMessage.deletedFromRecipient": false }
+                ]
             }
         },
         {
@@ -405,7 +407,7 @@ const getUserList = asyncHandler(async (req, res) => {
 
     return (
         res.status(200)
-            .json(200, new ApiResponse(200, userList, "User list Fetched successfully!"))
+            .json(new ApiResponse(200, userList, "User list Fetched successfully!"))
     )
 })
 
