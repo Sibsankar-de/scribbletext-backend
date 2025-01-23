@@ -2,6 +2,10 @@ import mongoose, { Schema } from "mongoose";
 
 
 const messageSchema = new Schema({
+    messageId: {
+        type: String,
+        required: true
+    },
     content: {
         text: {
             type: String
@@ -24,6 +28,9 @@ const messageSchema = new Schema({
         type: String,
         default: 'un received',
         required: true
+    },
+    repliedTo: {
+        type: Object
     },
     deletedFromSender: {
         type: Boolean,

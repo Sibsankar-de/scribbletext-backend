@@ -27,6 +27,9 @@ const userSchema = new Schema({
         default: false,
         required: true
     },
+    notificationSubscription: {
+        type: Object
+    },
     contactList: {
         type: Array
     },
@@ -36,8 +39,6 @@ const userSchema = new Schema({
     refreshToken: {
         type: String
     }
-
-
 }, { timestamps: true })
 
 userSchema.pre('save', async function (next) {
